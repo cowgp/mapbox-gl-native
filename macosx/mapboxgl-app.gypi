@@ -9,7 +9,9 @@
       'product_extension': 'app',
       'mac_bundle': 1,
       'mac_bundle_resources': [
-        'Icon.icns'
+        'Credits.rtf',
+        'Icon.icns',
+        'MainMenu.xib',
       ],
 
       'dependencies': [
@@ -21,42 +23,25 @@
       ],
 
       'sources': [
-        './main.mm',
-        '../platform/darwin/settings_nsuserdefaults.hpp',
-        '../platform/darwin/settings_nsuserdefaults.mm',
-        '../platform/darwin/reachability.m',
-        '../platform/default/glfw_view.hpp',
-        '../platform/default/glfw_view.cpp',
-      ],
-
-      'variables' : {
-        'cflags_cc': [
-          '<@(boost_cflags)',
-          '<@(glfw_cflags)',
-          '<@(variant_cflags)',
-        ],
-        'ldflags': [
-          '-framework SystemConfiguration', # For NSUserDefaults and Reachability
-          '<@(glfw_ldflags)',
-        ],
-        'libraries': [
-          '<@(glfw_static_libs)',
-          '<@(boost_libprogram_options_static_libs)'
-        ],
-      },
-
-      'libraries': [
-        '<@(libraries)',
+        './AppDelegate.h',
+        './AppDelegate.m',
+        './DroppedPinAnnotation.h',
+        './DroppedPinAnnotation.m',
+        './LocationCoordinate2DTransformer.h',
+        './LocationCoordinate2DTransformer.m',
+        './TimeIntervalTransformer.h',
+        './TimeIntervalTransformer.m',
+        './NSValue+Additions.h',
+        './NSValue+Additions.m',
+        './main.m',
       ],
 
       'xcode_settings': {
         'SDKROOT': 'macosx',
         'SUPPORTED_PLATFORMS':'macosx',
-        'OTHER_CPLUSPLUSFLAGS': [ '<@(cflags_cc)' ],
-        'OTHER_LDFLAGS': [ '<@(ldflags)' ],
-        'SDKROOT': 'macosx',
+        'OTHER_LDFLAGS': [ '-stdlib=libc++', '-lstdc++' ],
         'INFOPLIST_FILE': '../macosx/Info.plist',
-        'CLANG_ENABLE_OBJC_ARC': 'YES'
+        'CLANG_ENABLE_OBJC_ARC': 'YES',
       },
     }
   ]
