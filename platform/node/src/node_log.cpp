@@ -44,7 +44,7 @@ NodeLogObserver::NodeLogObserver(v8::Local<v8::Object> target)
           Nan::CallAsFunction(emit, handle, 2, argv);
       })) {
     Nan::HandleScope scope;
-    module.Reset(target);
+    module.Reset(std::move(target));
 
     // Don't keep the event loop alive.
     queue->unref();

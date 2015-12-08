@@ -1,4 +1,3 @@
-
 #include <mbgl/platform/default/headless_view.hpp>
 #include <mbgl/platform/default/headless_display.hpp>
 #include <mbgl/platform/log.hpp>
@@ -19,7 +18,7 @@
 namespace mbgl {
 
 HeadlessView::HeadlessView(float pixelRatio_, uint16_t width, uint16_t height)
-    : display(std::make_shared<HeadlessDisplay>()), pixelRatio(pixelRatio_) {
+    : display(std::move(std::make_shared<HeadlessDisplay>())), pixelRatio(pixelRatio_) {
     resize(width, height);
 }
 
