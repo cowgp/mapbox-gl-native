@@ -222,10 +222,6 @@ void Painter::renderPass(RenderPass pass_,
         if (!item.layer.hasRenderPass(pass))
             continue;
 
-#ifdef DEBUG
-        config.setDirty();
-#endif
-
         if (pass == RenderPass::Translucent) {
             config.blendFunc.reset();
             config.blend = GL_TRUE;
@@ -245,10 +241,6 @@ void Painter::renderPass(RenderPass pass_,
             MBGL_DEBUG_GROUP("background");
             renderBackground(*item.layer.template as<BackgroundLayer>());
         }
-
-#ifdef DEBUG
-        config.check();
-#endif
     }
 
     if (debug::renderTree) {

@@ -35,14 +35,6 @@ public:
         dirty = true;
     }
 
-#ifdef DEBUG
-    void check() {
-        if (dirty) {
-            throw std::logic_error("Use of possibly undefined gl::Value");
-        }
-    }
-#endif
-
 private:
     typename T::Type current = T::Default;
     bool dirty = false;
@@ -336,33 +328,6 @@ public:
         lineWidth.setDirty();
         viewport.setDirty();
     }
-
-#ifdef DEBUG
-    void check() {
-        stencilMask.check();
-        stencilTest.check();
-        if (stencilTest == GL_TRUE) {
-            stencilOp.check();
-            stencilFunc.check();
-        }
-
-        depthTest.check();
-        depthMask.check();
-        if (depthTest == GL_TRUE) {
-            depthRange.check();
-            depthFunc.check();
-        }
-
-        blend.check();
-        if (blend == GL_TRUE) {
-            blendFunc.check();
-        }
-
-        colorMask.check();
-        program.check();
-        viewport.check();
-    }
-#endif
 
     Value<StencilFunc> stencilFunc;
     Value<StencilMask> stencilMask;
