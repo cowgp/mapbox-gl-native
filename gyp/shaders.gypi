@@ -13,8 +13,12 @@
           ],
           'outputs': [
             '<(SHARED_INTERMEDIATE_DIR)/include/mbgl/shader/shaders.hpp',
-            '<(SHARED_INTERMEDIATE_DIR)/src/shader/shaders_gl.cpp',
-            '<(SHARED_INTERMEDIATE_DIR)/src/shader/shaders_gles2.cpp',
+            # XXX: Fixes #3229 after updating gyp on d467ae6. Apparently
+            # there was a change in behavior that made these files an
+            # .INTERMEDIATE causing the "action" to trigger on every build
+            # if they get explicitly declared here.
+            # '<(SHARED_INTERMEDIATE_DIR)/src/shader/shaders_gl.cpp',
+            # '<(SHARED_INTERMEDIATE_DIR)/src/shader/shaders_gles2.cpp',
           ],
           'action': ['../scripts/build-shaders.py', '<(SHARED_INTERMEDIATE_DIR)', '<@(_inputs)'],
         }
