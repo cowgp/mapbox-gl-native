@@ -70,7 +70,7 @@ static NSString * const MGLLocationManagerRegionIdentifier = @"MGLLocationManage
             [self startBackgroundTimeoutTimer];
             // On iOS 9 and above also allow background location updates
             if ([self.standardLocationManager respondsToSelector:@selector(allowsBackgroundLocationUpdates)]) {
-                self.standardLocationManager.allowsBackgroundLocationUpdates = YES;
+                //self.standardLocationManager.allowsBackgroundLocationUpdates = YES;
             }
         }
         
@@ -130,7 +130,7 @@ static NSString * const MGLLocationManagerRegionIdentifier = @"MGLLocationManage
     }
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray*)locations {
     CLLocation *location = locations.lastObject;
     if (location.speed > 0.0) {
         [self startBackgroundTimeoutTimer];

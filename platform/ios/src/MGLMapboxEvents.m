@@ -337,7 +337,7 @@ const NSTimeInterval MGLFlushInterval = 180;
         if ([MGLAccountManager accessToken] == nil) {
             return;
         }
-        [strongSelf.apiClient postEvent:turnstileEventAttributes completionHandler:^(NSError * _Nullable error) {
+        [strongSelf.apiClient postEvent:turnstileEventAttributes completionHandler:^(NSError *error) {
             if (error) {
                 [strongSelf pushDebugEvent:MGLEventTypeLocalDebug withAttributes:@{MGLEventKeyLocalDebugDescription: @"Network error",
                                                                                    @"error": error}];
@@ -458,7 +458,7 @@ const NSTimeInterval MGLFlushInterval = 180;
     __weak __typeof__(self) weakSelf = self;
     dispatch_async(self.serialQueue, ^{
         __strong __typeof__(weakSelf) strongSelf = weakSelf;
-        [self.apiClient postEvents:events completionHandler:^(NSError * _Nullable error) {
+        [self.apiClient postEvents:events completionHandler:^(NSError *error) {
             if (error) {
                 [strongSelf pushDebugEvent:MGLEventTypeLocalDebug withAttributes:@{MGLEventKeyLocalDebugDescription: @"Network error",
                                                                                         @"error": error}];

@@ -41,9 +41,9 @@ static NSString * const MGLAPIClientHTTPMethodPost = @"POST";
 
 #pragma mark Public API
 
-- (void)postEvents:(nonnull NS_ARRAY_OF(MGLMapboxEventAttributes *) *)events completionHandler:(nullable void (^)(NSError * _Nullable error))completionHandler {
+- (void)postEvents:(nonnull NS_ARRAY_OF(MGLMapboxEventAttributes *) *)events completionHandler:(nullable void (^)(NSError *error))completionHandler {
     __block NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:[self requestForEvents:events]
-                                                             completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                                                             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
         NSError *statusError = nil;
         if (httpResponse.statusCode >= 400) {
@@ -64,7 +64,7 @@ static NSString * const MGLAPIClientHTTPMethodPost = @"POST";
     [self.dataTasks addObject:dataTask];
 }
 
-- (void)postEvent:(nonnull MGLMapboxEventAttributes *)event completionHandler:(nullable void (^)(NSError * _Nullable error))completionHandler {
+- (void)postEvent:(nonnull MGLMapboxEventAttributes *)event completionHandler:(nullable void (^)(NSError *error))completionHandler {
     [self postEvents:@[event] completionHandler:completionHandler];
 }
 
